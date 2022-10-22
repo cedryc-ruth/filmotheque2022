@@ -37,6 +37,8 @@ class MovieFixtures extends Fixture implements DependentFixtureInterface
             $m->setDescription($movie['description']);
             $m->setCategory($this->getReference($movie['category']));
 
+            $this-> addReference($movie['title'],$m);
+
             $manager->persist($m);
         }
 

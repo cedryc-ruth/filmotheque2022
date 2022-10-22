@@ -23,12 +23,13 @@ class ActorController extends AbstractController
 
     #[Route('/new', name: 'app_actor_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ActorRepository $actorRepository): Response
-    {
+    {   //dd($request);
         $actor = new Actor();
         $form = $this->createForm(ActorType::class, $actor);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //dd($actor);
             $actorRepository->save($actor, true);
 
             return $this->redirectToRoute('app_actor_index', [], Response::HTTP_SEE_OTHER);
@@ -68,7 +69,7 @@ class ActorController extends AbstractController
 
     #[Route('/{id}', name: 'app_actor_delete', methods: ['POST'])]
     public function delete(Request $request, Actor $actor, ActorRepository $actorRepository): Response
-    {
+    { //dd($request);
         if ($this->isCsrfTokenValid('delete'.$actor->getId(), $request->request->get('_token'))) {
             $actorRepository->remove($actor, true);
         }

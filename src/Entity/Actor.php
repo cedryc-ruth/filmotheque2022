@@ -21,11 +21,17 @@ class Actor
     #[ORM\Column(length: 60)]
     #[Assert\Length(
         min: 2,
+        max: 60,
         minMessage: 'Vous devez fournir au moins 2 caractères',
     )]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 60)]
+    #[Assert\Length(
+        min: 2,
+        max: 60,
+        minMessage: 'Vous devez fournir au moins 2 caractères',
+    )]
     private ?string $lastname = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
